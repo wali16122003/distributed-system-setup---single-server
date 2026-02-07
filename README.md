@@ -1,6 +1,6 @@
 # Distributed Inference System - Setup Manual
 
-## 1. Problem Statement
+## Problem Statement
 
 ### Objective
 Set up a **distributed system** to test parallel inference processing across multiple virtual machines. The goal is to validate that the Crop Detection and Monitoring application can scale horizontally by distributing workload across multiple worker nodes before deploying to a production cloud environment (Kubernetes).
@@ -26,7 +26,7 @@ The existing `cdmap/national_worker.py` uses `ThreadPoolExecutor` for local para
 
 ---
 
-## 2. System Specifications
+## System Specifications
 
 ### Host Server (Master Node)
 | Component | Specification |
@@ -58,7 +58,7 @@ The existing `cdmap/national_worker.py` uses `ThreadPoolExecutor` for local para
 
 ---
 
-## 3. Setup Steps Completed
+## Setup Steps
 
 ### Step 1: Install KVM/QEMU
 
@@ -309,7 +309,7 @@ sudo ssh worker@<VM_IP>
 
 ---
 
-## 4. Useful Commands
+## Useful Commands
 
 ### VM Management
 ```bash
@@ -336,7 +336,7 @@ sudo ssh worker@192.168.122.83   # SSH to worker3
 
 ---
 
-## 5. Scripts in this Directory
+## Scripts in this Directory
 
 | Script | Purpose |
 |--------|---------|
@@ -395,19 +395,19 @@ sudo ./scripts/deploy_workers.sh
 
 ---
 
-## 6. Next Steps
+## Next Steps
 
 1. ✅ VMs created and running
 2. ✅ Network connectivity working
 3. ✅ Disk expanded to 50GB
-4. ⏳ Install Docker on all VMs
+4. ✅ Install Docker on all VMs
 5. ⏳ Deploy cdmap workers via `deploy_workers.sh`
 6. ⏳ Test distributed inference processing
 7. ⏳ Measure performance (single vs multi-worker)
 
 ---
 
-## 7. Lessons Learned
+## Lessons Learned
 
 | Issue | Root Cause | Solution |
 |-------|------------|----------|
