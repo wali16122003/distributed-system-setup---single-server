@@ -239,13 +239,49 @@ sudo rm -f /var/lib/apt/lists/lock
 sudo rm -f /var/lib/dpkg/lock*
 sudo dpkg --configure -a
 
-# Install Docker
+# Install Docker and Docker Compose
 sudo apt update
-sudo apt install -y docker.io
+sudo apt install -y docker.io docker-compose
 sudo systemctl enable docker
 sudo systemctl start docker
 sudo usermod -aG docker worker
 ```
+
+---
+
+### Step 8b: CDMAP Docker Configuration
+
+The `deploy_workers.sh` script creates a Dockerfile with required dependencies for OpenCV and GDAL:
+
+```dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies (including OpenCV requirements)
+RUN apt-get update && apt-get install -y \
+    gdal-bin \
+    libgdal-dev \
+    python3-gdal \
+    git \
+    libgl1 \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set GDAL environment
+ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+ENV C_INCLUDE_PATH=/usr/include/gdal
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+RUN mkdir -p /app/output /app/result
+
+CMD ["python", "main.py"]
+```
+
+> **Note**: The `libgl1` and `libglib2.0-0` packages are required for OpenCV. Without them, you'll get `ImportError: libGL.so.1: cannot open shared object file`
 
 ---
 
