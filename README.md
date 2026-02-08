@@ -517,9 +517,10 @@ To add more workers:
 2. ✅ Network connectivity working
 3. ✅ Disk expanded to 50GB
 4. ✅ Install Docker on all VMs
-5. ⏳ Deploy cdmap workers via `deploy_workers.sh`
-6. ⏳ Test distributed inference processing
-7. ⏳ Measure performance (single vs multi-worker)
+5. ✅ Deploy cdmap workers via `deploy_workers.sh`
+6. ✅ Seeding Application with LULC and S2 snapshot for test district
+7. ⏳ Test distributed inference processing
+8. ⏳ Measure performance (single vs multi-worker)
 
 ---
 
